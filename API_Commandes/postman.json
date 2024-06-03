@@ -1,0 +1,73 @@
+{
+    "info": {
+        "name": "FastAPI Orders",
+        "_postman_id": "your-postman-id",
+        "description": "Collection for FastAPI Orders API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Order",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"clientId\": 1, \"produits\": [{\"produitId\": 1}, {\"produitId\": 2}]}"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/customers/orders",
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "customers",
+                        "orders"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Orders by Customer ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/customers/:customer_id/orders",
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "customers",
+                        ":customer_id",
+                        "orders"
+                    ],
+                    "variable": [
+                        {
+                            "key": "customer_id",
+                            "value": "1"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
