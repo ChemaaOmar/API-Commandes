@@ -1,19 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-import models, schemas
-from database import SessionLocal, engine
+from . import models, schemas
+from .database import SessionLocal, engine, get_db
 
 app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
-
-# Dépendance pour obtenir la session de la base de données
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 # Créer une commande
 @app.post("/customers/orders", response_model=schemas.Commande)
@@ -34,7 +26,7 @@ def create_commande(commande: schemas.CommandeCreate, db: Session = Depends(get_
 # Récupérer la liste des commandes d'un client
 @app.get("/customers/{customer_id}/orders", response_model=schemas.Commande)
 def read_commande(customer_id: int, db: Session = Depends(get_db)):
-    db_commande = db.query(models.Commande).filter(models.Commande.id == customer_id).first()
+    db_commande = db.query(models.Commande).filter(models.Commande.clientId == customer_id).all()
     if db_commande is None:
         raise HTTPException(status_code=404, detail="Commande not found")
     return db_commande
