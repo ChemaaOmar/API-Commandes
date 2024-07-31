@@ -1,7 +1,9 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from .database import Base
+from API_Commandes.database import Base
+
+
 
 class Commande(Base):
     __tablename__ = "commandes"

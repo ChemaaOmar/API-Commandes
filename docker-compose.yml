@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:root@localhost:5432/Commandes
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: Commandes
+    ports:
+      - "5432:5432"
