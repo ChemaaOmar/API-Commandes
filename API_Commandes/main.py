@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from API_Commandes import models, schemas
 from API_Commandes.database import engine, get_db
+from typing import List
 
 app = FastAPI()
 
@@ -24,7 +25,7 @@ def create_commande(commande: schemas.CommandeCreate, db: Session = Depends(get_
     return db_commande
 
 # Récupérer la liste des commandes d'un client
-@app.get("/customers/{customer_id}/orders", response_model=schemas.Commande)
+@app.get("/customers/{customer_id}/orders", response_model=List[schemas.Commande])
 def read_commande(customer_id: int, db: Session = Depends(get_db)):
     db_commande = db.query(models.Commande).filter(models.Commande.clientId == customer_id).all()
     if db_commande is None:
