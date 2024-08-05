@@ -12,7 +12,7 @@ class CommandeProduit(CommandeProduitBase):
     commande_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CommandeBase(BaseModel):
     clientId: int
@@ -25,4 +25,4 @@ class Commande(CommandeBase):
     produits: List[CommandeProduit] = []
 
     class Config:
-        orm_mode = True
+        from_attributes = True
