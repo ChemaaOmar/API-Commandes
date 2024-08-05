@@ -31,5 +31,5 @@ def read_commande(customer_id: int, db: Session = Depends(get_db)):
     
     # Vérifier si la liste des commandes est vide
     if not db_commande:
-        raise HTTPException(status_code=404, detail="Commande not found")
+        raise HTTPException(status_code=404, detail="Commandes not found")
     return db_commande
