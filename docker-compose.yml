@@ -4,16 +4,16 @@ services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - "8002:8000"
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://postgres:root@localhost:5432/Commandes
+      - DATABASE_URL=postgresql://postgres:root@db/commandes
   db:
     image: postgres:13
     environment:
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: Commandes
+      POSTGRES_DB: commandes
     ports:
-      - "5432:5432"
+      - "5435:5432"

@@ -1,8 +1,10 @@
 # API-Commandes
 
-## Pour lancer l'API
+# Build app
+docker-compose build
 
-Vous devez être dans le dossier 'API_Commandes' et faire la commande :
-```shell
-uvicorn main:app --reload
-```
+# Run app
+docker-compose up
+
+# Stop app
+docker-compose down

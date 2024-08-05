@@ -11,7 +11,7 @@ COPY . /API_Commandes
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Exposer le port que l'application utilisera
-EXPOSE 8000
+EXPOSE 8002
 
 # Commande pour lancer l'application
-CMD ["uvicorn", "API_Commandes.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "API_Commandes.main:app", "--host", "0.0.0.0", "--port", "8002"]

@@ -22,7 +22,7 @@
                     "raw": "{\"clientId\": 1, \"produits\": [{\"produitId\": 1}, {\"produitId\": 2}]}"
                 },
                 "url": {
-                    "raw": "http://127.0.0.1:8000/customers/orders",
+                    "raw": "http://127.0.0.1:8002/customers/orders",
                     "protocol": "http",
                     "host": [
                         "127",
@@ -30,7 +30,7 @@
                         "0",
                         "1"
                     ],
-                    "port": "8000",
+                    "port": "8002",
                     "path": [
                         "customers",
                         "orders"
@@ -45,7 +45,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://127.0.0.1:8000/customers/:customer_id/orders",
+                    "raw": "http://127.0.0.1:8002/customers/:customer_id/orders",
                     "protocol": "http",
                     "host": [
                         "127",
@@ -53,7 +53,7 @@
                         "0",
                         "1"
                     ],
-                    "port": "8000",
+                    "port": "8002",
                     "path": [
                         "customers",
                         ":customer_id",
