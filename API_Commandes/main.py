@@ -28,6 +28,8 @@ def create_commande(commande: schemas.CommandeCreate, db: Session = Depends(get_
 @app.get("/customers/{customer_id}/orders", response_model=List[schemas.Commande])
 def read_commande(customer_id: int, db: Session = Depends(get_db)):
     db_commande = db.query(models.Commande).filter(models.Commande.clientId == customer_id).all()
-    if db_commande is None:
+    
+    # Vérifier si la liste des commandes est vide
+    if not db_commande:
         raise HTTPException(status_code=404, detail="Commande not found")
     return db_commande
