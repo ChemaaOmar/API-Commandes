@@ -70,7 +70,7 @@ class CommmandesAPITestCase(unittest.TestCase):
         response = self.client.get(f"/customers/1/orders")
         self.assertEqual(response.status_code, 200)
         data = response.json()
-        self.assertEqual(len(data), 2)
+        self.assertEqual(len(data), 3)
         self.assertEqual(data[0]["clientId"], 1)
         self.assertEqual(data[1]["clientId"], 1)
 
