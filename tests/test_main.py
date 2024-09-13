@@ -6,6 +6,9 @@ from API_Commandes.main import app
 from API_Commandes.database import Base, get_db
 import os
 from dotenv import load_dotenv
+import aio_pika
+import time
+import asyncio
 
 load_dotenv()
 
@@ -13,6 +16,19 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+RABBITMQ_URL = os.getenv("RABBITMQ_URL")
+
+async def wait_for_rabbitmq():
+    while True:
+        try:
+            connection = await aio_pika.connect_robust(RABBITMQ_URL)
+            await connection.close()
+            break
+        except Exception:
+            print("Waiting for RabbitMQ...")
+            time.sleep(5)
+
 
 # Configuration du client de test pour utiliser la base de données de test
 def override_get_db():
@@ -27,6 +43,9 @@ app.dependency_overrides[get_db] = override_get_db
 class CommmandesAPITestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # Attendre que RabbitMQ soit prêt
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(wait_for_rabbitmq())
         # Créer les tables de la base de données de test
         Base.metadata.create_all(bind=engine)
         cls.client = TestClient(app)
