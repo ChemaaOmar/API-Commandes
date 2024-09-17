@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: commandes
     ports:
-      - "5436:5432"
+      - "5436:5434"
     networks:
       - shared-network
 
